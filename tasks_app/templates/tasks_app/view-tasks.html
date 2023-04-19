@@ -1,0 +1,32 @@
+
+<div id="view-tasks">
+    <h1>This is the View Tasks page</h1>
+    {% if task %}
+    <table>
+        <thead>
+            <th>Task ID</th>
+            <th>Semester ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Due Date</th>
+            <th>Details</th>
+            <th>Completed</th>
+            <th>Pinned</th>
+        </thead>
+        {% for t in task %}
+        <tr>
+            <td>{{t.task_id}}</td>
+            <td>{{t.semester_id}}</td>
+            <td>{{t.title}}</td>
+            <td>{{t.category}}</td>
+            <td>{{t.due_date}}</td>
+            <td>{{t.details}}</td>
+            <td>{{t.is_complete}}</td>
+            <td>{{t.is_pinned}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No task records found.</p>
+    {% endif %}
+</div>
