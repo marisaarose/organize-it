@@ -1,4 +1,6 @@
 from django.db import models
+from django.forms import ModelForm
+from django import forms
 
 class Task(models.Model):
     task_id = models.AutoField(primary_key=True)
@@ -20,3 +22,4 @@ class Task_Attachment(models.Model):
     
     def __str__(self):
         return str(self.attachments_id)
+    

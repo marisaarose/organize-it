@@ -1,7 +1,6 @@
 
 <div id="view-tasks">
     <h1>This is the View Tasks page</h1>
-    <h2>Hi</h2>
     {% if task %}
     <table>
         <thead>
@@ -30,4 +29,5 @@
     {% else %}
     <p>No task records found.</p>
     {% endif %}
+    <button><a href="{% url 'new task' %}">Create New Task</a></button>
 </div>
