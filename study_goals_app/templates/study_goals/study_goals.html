@@ -1,0 +1,30 @@
+    <div id="study_goals">
+      <h1>The Study Goals Page</h1>
+      <h3>{% if goals %}</h3>
+      <table>
+        <thead>
+           <th>View Study Goals</th>
+          <th>View Study Goal Details</li>
+          <th>Edit Study Goal</th>
+          <th>New Study Goal</th>
+          
+        </thead>
+        {% for g in goals %}
+        <tr>
+          <td>{{g.study_goal_id}}</td>
+          <td>{{g.title}}</td>
+          <td>{{g.category}}</td>
+          <td>{{g.due_date}}</td>
+          <td>{{g.details}}</td>
+          <td>{{g.manual_progress}}</td>
+          <td>{{g.progress}}</td>
+          
+
+        </tr>
+        {% endfor %}
+       
+        </table>
+      {% else %}
+      <h4><p>No Study Goals Found</p></h4>
+      {% endif %}
+    </div>
