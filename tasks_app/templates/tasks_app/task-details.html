@@ -1,0 +1,47 @@
+<div id="task-details">
+    <h1>This is the Task Details page</h1>
+    <table>
+        <thead>
+            <th>Task ID</th>
+            <th>Semester</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Due Date</th>
+            <th>Details</th>
+            <th>Completed</th>
+            <th>Pinned</th>
+        </thead>
+        <tr>
+            <td>{{task.task_id}}</td>
+            <td>{{task.semester_id.name}}</td>
+            <td>{{task.title}}</td>
+            <td>{{task.category.name}}</td>
+            <td>{{task.due_date}}</td>
+            <td>{{task.details}}</td>
+            <td>{{task.is_complete}}</td>
+            <td>{{task.is_pinned}}</td>
+        </tr>
+    </table>
+    <h3>Attachments</h3>
+    {% if attachments %}
+    <table>
+        <thead>
+            <th>Attachment ID</th>
+            <th>File Name</th>
+            <th>Delete File</th>
+        </thead>
+        {% for a in attachments %}
+        <tr>
+            <td>{{ a.attachments_id }}</td>
+            <td>{{ a.file }}</td>
+            <td><a href="">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>This task has no attachments.</p>
+    {% endif %}
+    <button><a href="{% url 'new attachment' task.task_id %}">Add Attachment</a></button>
+    <button><a href="{% url 'edit task' task.task_id %}">Edit Task</a></button>
+    <button><a href="{% url 'view tasks' %}">Back to View Tasks</a></button>
+</div>

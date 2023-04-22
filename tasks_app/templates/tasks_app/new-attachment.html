@@ -1,6 +1,7 @@
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
+<button><a href="{{ request.META.HTTP_REFERER }}">Back</a></button>
 <button><a href="{% url 'view tasks' %}">View Tasks</a></button>

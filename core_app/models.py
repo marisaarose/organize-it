@@ -15,7 +15,7 @@ class Semester(models.Model):
     current = models.BooleanField()
     
     def __str__(self):
-        return str(self.semester_id)
+        return self.name
 
 class Holiday(models.Model):
     holiday_id = models.AutoField(primary_key=True)

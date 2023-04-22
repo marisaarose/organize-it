@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django import forms
+from core_app.models import Semester
 
 class Task(models.Model):
     task_id = models.AutoField(primary_key=True)
@@ -13,7 +14,7 @@ class Task(models.Model):
     is_pinned = models.BooleanField()
     
     def __str__(self):
-        return str(self.task_id)
+        return self.title
 
 class Task_Attachment(models.Model):
     attachments_id = models.AutoField(primary_key=True)
@@ -21,5 +22,5 @@ class Task_Attachment(models.Model):
     file = models.FileField()
     
     def __str__(self):
-        return str(self.attachments_id)
+        return self.attachments_id
     

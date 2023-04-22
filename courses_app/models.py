@@ -9,7 +9,7 @@ class Instructor(models.Model):
     office_details = models.TextField(blank=True)
     
     def __str__(self):
-        return str(self.instructor_id)
+        return self.first_name + " " + self.last_name
 class Course(models.Model):
     course_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
@@ -25,7 +25,7 @@ class Course(models.Model):
     details = models.TextField(blank=True)
     
     def __str__(self):
-        return str(self.course_id)
+        return self.name
     
 class Course_Meeting(models.Model):
     meeting_id = models.AutoField(primary_key=True)
