@@ -6,9 +6,10 @@ from tasks_app.forms import TaskForm, Task_AttachmentForm
 # Create your views here.
 
 def view_tasks(request):
-    tasks_list = Task.objects.order_by('due_date').filter(is_pinned=False)
+    tasks_list = Task.objects.order_by('due_date').filter(is_pinned=False, is_complete=False)
     pinned_list = Task.objects.filter(is_pinned=True)
-    return render(request, 'tasks_app/view-tasks.html', context = {'task':tasks_list,'pinned':pinned_list})
+    compltasks_list = Task.objects.filter(is_complete=True)
+    return render(request, 'tasks_app/view-tasks.html', context = {'task':tasks_list,'pinned':pinned_list,'complete':compltasks_list})
 
 def new_task(request):
     context = {}
@@ -40,6 +41,8 @@ def edit_task(request, id):
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
+            if form.instance.is_complete == True:
+                form.instance.is_pinned = False
             form.save()
             return redirect('task details', task.task_id)
     else:
@@ -59,3 +62,10 @@ def new_attachment(request, id):
         form = Task_AttachmentForm(initial={'task_id': id})
     context['form'] = form
     return render(request, "tasks_app/new-attachment.html", context)
+
+def delete_attachment(request, id):
+    attachment = Task_Attachment.objects.get(attachments_id = id)
+    attachment.file.delete()
+    attachment.delete()
+    return redirect('task details', attachment.task_id.task_id)
+    

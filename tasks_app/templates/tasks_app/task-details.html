@@ -34,7 +34,7 @@
         <tr>
             <td>{{ a.attachments_id }}</td>
             <td>{{ a.file }}</td>
-            <td><a href="">Delete</a></td>
+            <td><a href="{% url 'delete attachment' a.attachments_id %}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

@@ -42,3 +42,26 @@
     {% endif %}
     <button><a href="{% url 'new task' %}">Create New Task</a></button>
 </div>
+<div id="view-compl-tasks">
+    <h1>You are viewing completed tasks</h1>
+    {% if complete %}
+    <table>
+        <thead>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Due Date</th>
+            <th>View Task Details</th>
+        </thead>
+        {% for c in complete %}
+        <tr>
+            <td>{{c.title}}</td>
+            <td>{{c.category.name}}</td>
+            <td>{{c.due_date}}</td>
+            <td><a href="{% url 'task details' c.task_id %}">View Details</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No completed task records found.</p>
+    {% endif %}
+</div>
