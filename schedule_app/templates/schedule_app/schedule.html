@@ -1,6 +1,6 @@
 <div id="view-Schedule">
   <h1>Here is Your Schedule</h1>
-  <h3>{% %}</h3>
+  <h3>{% if event%}</h3>
   <table>
     <thead>
       <th>View Schedule</th>
@@ -8,7 +8,7 @@
       <th>Edit Event</th>
       <th>New Event</th>
     </thead>
-    {% %}
+    {% for e in event%}
     <tr>
       <td>{{event_id}}</td>
       <td>{{semeseted_id}}</td>
@@ -17,6 +17,8 @@
       <td>{{start_time}}</td>
       <td>{{end_time}}</td>
     </tr>
-    {% %}
+    {% endfor %}
   </table>
+  {% else %}
+  <p>Nothing in Schedule</p>
 </div>
