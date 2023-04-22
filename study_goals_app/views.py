@@ -8,4 +8,4 @@ def Study_goals(request):
     goal_list = Study_Goal.objects.order_by('due_date')
     goal_dict = {'goal': goal_list}
 
-    return render(request, 'study_goals_app/study_goals.html', context=dict)
+    return render(request, 'study_goals_app/study_goals.html', context=goal_dict)

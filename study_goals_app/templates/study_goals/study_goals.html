@@ -1,6 +1,6 @@
     <div id="study_goals">
       <h1>The Study Goals Page</h1>
-      <h3>{% if goals %}</h3>
+      <h3>{% if goal %}</h3>
       <table>
         <thead>
            <th>View Study Goals</th>
@@ -9,7 +9,7 @@
           <th>New Study Goal</th>
           
         </thead>
-        {% for g in goals %}
+        {% for g in goal %}
         <tr>
           <td>{{g.study_goal_id}}</td>
           <td>{{g.title}}</td>
