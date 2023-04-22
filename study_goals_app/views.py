@@ -5,7 +5,7 @@ from study_goals_app.models import Study_Goal, Study_Goal_Attachment,Related_Tas
 # Create your views here.
 
 def Study_goals(request):
-    dict = {'inser_here': 'this is views.py', 'vSG':'a', 'VSGD': 'b', 'ESG': 'c', 'NSG': 'd'}
-    return HttpResponse("Hello from Study goals")
+    goal_list = Study_Goal.objects.order_by('due_date')
+    goal_dict = {'goal': goal_list}
 
     return render(request, 'study_goals_app/study_goals.html', context=dict)
