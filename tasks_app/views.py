@@ -68,4 +68,9 @@ def delete_attachment(request, id):
     attachment.file.delete()
     attachment.delete()
     return redirect('task details', attachment.task_id.task_id)
+
+def delete_task(request, id):
+    task = Task.objects.get(task_id = id)
+    task.delete()
+    return redirect('view tasks')
     

@@ -8,4 +8,5 @@ urlpatterns = [
     path('edit-task/<int:id>', views.edit_task, name='edit task'),
     path('new-attachment/<int:id>', views.new_attachment, name='new attachment'),
     path('delete-attachment/<int:id>', views.delete_attachment, name='delete attachment'),
+    path('delete-task/<int:id>', views.delete_task, name='delete task'),
 ]

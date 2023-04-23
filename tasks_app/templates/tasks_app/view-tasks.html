@@ -1,67 +1,103 @@
+<style>
+    .task-container { width:100%; border-radius:5px; border:1px solid black; margin:5px; }
+    .task-row { display:flex; justify-content:space-between; }
+    .task-category { background-color:orange; border-radius:5px; }
+    .task-due { text-align:right; }
+</style>
+{% load daysleft %}
 <div id="view-tasks">
-    <h1>This is the View Tasks page</h1>
-    {% if task %}
-    {% if pinned %}
-    <h3>Pinned Tasks</h3>
-    <table>
-        <thead>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Due Date</th>
-            <th>View Task Details</th>
-        </thead>
+    <!-- These will control the tabs once they're implemented -->
+  <ul class="nav nav-tabs" id="tasks-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        href=""
+        id="upcoming-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#upcoming"
+        type="button"
+        role="tab"
+        aria-controls="upcoming"
+        >Upcoming</a
+      >
+    </li>
+    <li class="nav nav-tabs" role="presentation">
+      <a
+        class="nav-link"
+        href=""
+        id="completed-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#completed"
+        type="button"
+        role="tab"
+        aria-controls="completed"
+        >Completed</a
+      >
+    </li>
+  </ul>
+
+
+  <!-- Content for the upcoming tasks tab -->
+  <div class="tab-content" id="taskTabContent">
+    <div
+      class="tab-pane"
+      id="upcoming"
+      role="tabpanel"
+      aria-labelledby="upcoming-tab"
+    >
+      {% if task %} {% if pinned %}
+      <h3>Pinned</h3>
         {% for p in pinned %}
-        <tr>
-            <td>{{p.title}}</td>
-            <td>{{p.category.name}}</td>
-            <td>{{p.due_date}}</td>
-            <td><a href="{% url 'task details' p.task_id %}">View Details</a></td>
-        </tr>
+      <div class="task-container">
+        <div class="task-title">{{p.title}}</div>
+        <div class="task-row">
+            <div class="task-category">{{p.category.name}}</div>
+            <div class="task-due">Due {{ p.due_date|date:"n/d" }} - {{ p.due_date|days_left }}</div>
+        </div>
+        <a href="{% url 'task details' p.task_id %}">View Details</a>
+      </div>
         {% endfor %}
-    </table>
-    <h3>All Other Tasks</h3>
-    {% endif %}
-    <table>
-        <thead>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Due Date</th>
-            <th>View Task Details</th>
-        </thead>
+      <h3>All Upcoming</h3>
+      {% endif %}
         {% for t in task %}
-        <tr>
-            <td>{{t.title}}</td>
-            <td>{{t.category.name}}</td>
-            <td>{{t.due_date}}</td>
-            <td><a href="{% url 'task details' t.task_id %}">View Details</a></td>
-        </tr>
+      <div class="task-container">
+        <div class="task-title">{{t.title}}</div>
+        <div class="task-row">
+            <div class="task-category">{{t.category.name}}</div>
+            <div class="task-due">Due {{ t.due_date|date:"n/d" }} - {{ t.due_date|days_left }}</div>
+        </div>
+        <a href="{% url 'task details' t.task_id %}">View Details</a>
+      </div>
         {% endfor %}
-    </table>
-    {% else %}
-    <p>No task records found.</p>
-    {% endif %}
-    <button><a href="{% url 'new task' %}">Create New Task</a></button>
-</div>
-<div id="view-compl-tasks">
-    <h1>You are viewing completed tasks</h1>
-    {% if complete %}
-    <table>
-        <thead>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Due Date</th>
-            <th>View Task Details</th>
-        </thead>
+      {% else %}
+      <p>No task records found.</p>
+      {% endif %}
+      <button><a href="{% url 'new task' %}">Create New Task</a></button>
+    </div>
+
+
+    <!-- Content for the completed tasks tab -->
+    <div
+      class="tab-pane"
+      id="completed"
+      role="tabpanel"
+      aria-labelledby="completed-tab"
+    >
+      {% if complete %}
+      <h3>All Completed</h3>
         {% for c in complete %}
-        <tr>
-            <td>{{c.title}}</td>
-            <td>{{c.category.name}}</td>
-            <td>{{c.due_date}}</td>
-            <td><a href="{% url 'task details' c.task_id %}">View Details</a></td>
-        </tr>
+      <div class="task-container">
+        <div class="task-title">{{c.title}}</div>
+        <div class="task-row">
+            <div class="task-category">{{c.category.name}}</div>
+        </div>
+        <a href="{% url 'task details' c.task_id %}">View Details</a>
+      </div>
         {% endfor %}
-    </table>
-    {% else %}
-    <p>No completed task records found.</p>
-    {% endif %}
+      {% else %}
+      <p>No completed task records found.</p>
+      {% endif %}
+      <button><a href="{% url 'new task' %}">Create New Task</a></button>
+    </div>
+  </div>
 </div>

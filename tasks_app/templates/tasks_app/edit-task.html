@@ -3,4 +3,5 @@
     {{ form }}
     <input type="submit" value="Submit">
 </form>
+<button><a href="{{ request.META.HTTP_REFERER }}">Back</a></button>
 <button><a href="{% url 'view tasks' %}">View Tasks</a></button>

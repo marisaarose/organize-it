@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'courses_app',
     'schedule_app',
     'study_goals_app',
-    'tasks_app'
+    'tasks_app',
+    'tasks_app.templatetags'
 ]
 
 MIDDLEWARE = [
