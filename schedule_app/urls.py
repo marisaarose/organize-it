@@ -4,5 +4,5 @@ from schedule_app import views
 
 urlpatterns = [
     
-    path('view-schedule/',views.Schedule, name='view schedule')
+    path('view_events/',views.events, name='view schedule')
 ]

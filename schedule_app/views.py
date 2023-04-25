@@ -4,8 +4,37 @@ from schedule_app.models import Event
 
 # Create your views here.
 
-def Schedule(request):
+def events(request):
     events_list = Event.objects.order_by('date')
     event_dict ={'event': events_list}
+    return HttpResponse("I'm HERE")
     
     return render(request, 'schedule_app/schedule.html', context = event_dict)
+
+def new_event(request):
+    context = {}
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            event = Event.objects.latest('event_id')
+            return redirect('event details', Event.event_id)
+    else:
+        form = EventForm()
+    context['form'] = form
+    return render(request, "schedule_app/new_task.html", context)
+
+def edit_event(request, id):
+    event = Event.objects.get(task_id = id)
+    
+    if request.method == 'POST':
+        form = EventForm(request.POST, isinstance=event)
+        if form.is_valid():
+            if form.instance.is_complete == True:
+                form.instance.is_pinned = False
+            form.save()
+            return redirect('event details', event.event_id)
+    else:
+        form = EventForm(instance=event)
+        
+    return render(request, 'tasks_app/edit-task.html', context = {'form': form,})
