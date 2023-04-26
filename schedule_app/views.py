@@ -22,7 +22,7 @@ def new_event(request):
     else:
         form = EventForm()
     context['form'] = form
-    return render(request, "schedule_app/new-task.html", context)
+    return render(request, "schedule_app/new-event.html", context)
 
 def edit_event(request, id):
     event = Event.objects.get(task_id = id)
@@ -37,4 +37,4 @@ def edit_event(request, id):
     else:
         form = EventForm(instance=event)
         
-    return render(request, 'tasks_app/edit-task.html', context = {'form': form,})
+    return render(request, 'schedule_app/edit-event.html', context = {'form': form,})
