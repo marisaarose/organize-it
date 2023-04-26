@@ -19,7 +19,9 @@ from tasks_app import views
 from django.conf.urls import include
 from schedule_app import views
 from study_goals_app import views 
-urlpatterns = [ path('schedule_app/', include('schedule_app.urls')),
+urlpatterns = [ 
+               
+    path('schedule_app/', include('schedule_app.urls')),
     path('study_goals_app/', include('study_goals_app.urls')),
     path('tasks_app/', include('tasks_app.urls')),
     path('admin/', admin.site.urls),

@@ -1,19 +1,30 @@
-<h1 style="text-align: center"><b>SCHEDULE</b></h1>
-
 <style>
-  p {
-    border: 4px solid black;
-    padding: 10px;
+  .schedule-block {
+    width: 100%;
+    border: 5px outset black;
   }
-  div {
+  .day-of-week {
     display: inline-block;
+    border: 5px outset black;
+    background-color: lightblue;
+    text-align: center;
+  }
+  .current-day{
+    text-align: right;
   }
 </style>
+<h1 style="text-align: center"><b>Schedule</b></h1>
+<div class="day-of-week">
+  <div>S M T W T F S</div>
+</div>
+<!--<div class=".current-day"> don't know how to implement this-- >
 
-<div><p>M</p></div>
-<div><p>T</p></div>
-<div><p>W</p></div>
-<div><p>T</p></div>
-<div><p>F</p></div>
-<div><p>S</p></div>
-<div><p>S</p></div>
+<div class="schedule-block">
+  <div class="course-name">{{c.course_name}}</div>
+</div>
+<div class="schedule-block">
+  <div class="course-name">{{c.course_name}}</div>
+</div>
+<div class="schedule-block">
+  <div class="course-name">{{c.course_name}}</div>
+</div>

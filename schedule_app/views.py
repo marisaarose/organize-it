@@ -4,12 +4,12 @@ from schedule_app.models import Event
 
 # Create your views here.
 
-def events(request):
-    events_list = Event.objects.order_by('date')
-    event_dict ={'event': events_list}
+def view_schedule(request):
+    schedule_list = Event.objects.order_by('Date')
+    schedule_dict ={'event': schedule_list}
     return HttpResponse("I'm HERE")
     
-    return render(request, 'schedule_app/schedule.html', context = event_dict)
+    return render(request, 'schedule_app/view-schedule.html', context = {'event':schedule_dict})
 
 def new_event(request):
     context = {}
@@ -22,7 +22,7 @@ def new_event(request):
     else:
         form = EventForm()
     context['form'] = form
-    return render(request, "schedule_app/new_task.html", context)
+    return render(request, "schedule_app/new-task.html", context)
 
 def edit_event(request, id):
     event = Event.objects.get(task_id = id)
