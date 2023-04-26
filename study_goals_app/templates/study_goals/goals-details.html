@@ -1,0 +1,51 @@
+<style>
+  .task-title {
+    font-size: 30px;
+  }
+  .task-category {
+    background-color: red;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  .task-due {
+    font-style: italic;
+  }
+</style>
+<div id="goals-details">
+  <div class="task-title">{{task.title}}</div>
+  <div class="task-category">{{task.category.name}}</div>
+  <div class="task-due">
+    Due {{ task.due_date|date:"n/d" }} - {{ task.due_date|days_left }}
+  </div>
+  <h3>Details</h3>
+  <div class="task-details">{{task.details}}</div>
+  <h3>Attachments</h3>
+  {% if attachments %}
+  <table>
+    <thead>
+      <th>Attachment ID</th>
+      <th>File Name</th>
+      <th>Delete File</th>
+    </thead>
+    {% for a in attachments %}
+    <tr>
+      <td>{{ a.attachments_id }}</td>
+      <td>{{ a.file }}</td>
+      <td>
+        <a href="{% url 'delete attachment' a.attachments_id %}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>This task has no attachments.</p>
+  {% endif %}
+  <button>
+    <a href="{% url 'new attachment' task.task_id %}">Add Attachment</a>
+  </button>
+  <button><a href="{% url 'edit task' task.task_id %}">Edit Task</a></button>
+  <button>
+    <a href="{% url 'delete task' task.task_id %}">Delete Task</a>
+  </button>
+  <button><a href="{% url 'view tasks' %}">Back to View Tasks</a></button>
+</div>

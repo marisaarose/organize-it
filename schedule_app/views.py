@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.http import HttpResponse, HttpResponseRedirect 
 from schedule_app.models import Event 
 
 # Create your views here.
@@ -38,3 +39,10 @@ def edit_event(request, id):
         form = EventForm(instance=event)
         
     return render(request, 'schedule_app/edit-event.html', context = {'form': form,})
+
+
+def delete_event(request, id):
+    event = Event.objects.get(task_id = id)
+    event.delete()
+    
+    return redirect("view event")
